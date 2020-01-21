@@ -10,13 +10,13 @@ class AdmobReward extends AdmobEventHandler {
 
   int id;
   MethodChannel _adChannel;
-  final String userId;
   final String adUnitId;
+  final String customData;
   final void Function(AdmobAdEvent, Map<String, dynamic>) listener;
 
   AdmobReward({
     @required this.adUnitId,
-    this.userId,
+    this.customData,
     this.listener,
   }) : super(listener) {
     id = hashCode;
@@ -39,8 +39,8 @@ class AdmobReward extends AdmobEventHandler {
       'id': id,
       'adUnitId': adUnitId,
     };
-    if (userId != null) {
-      args['userId'] = userId;
+    if (customData != null) {
+      args['customData'] = customData;
     }
     await _channel.invokeMethod('load', args);
 
