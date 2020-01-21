@@ -25,6 +25,7 @@ class AdmobBanner extends StatefulWidget {
 
 class _AdmobBannerState extends State<AdmobBanner> {
   AdmobBannerController _controller;
+  Key _platformKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class _AdmobBannerState extends State<AdmobBanner> {
         width: widget.adSize.width >= 0 ? widget.adSize.width.toDouble() : double.infinity,
         height: widget.adSize.height >= 0 ? widget.adSize.height.toDouble() : double.infinity,
         child: AndroidView(
-          key: UniqueKey(),
+          key: _platformKey,
           viewType: 'admob_flutter/banner',
           creationParams: <String, dynamic>{
             "adUnitId": widget.adUnitId,
@@ -45,7 +46,7 @@ class _AdmobBannerState extends State<AdmobBanner> {
       );
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       return Container(
-        key: UniqueKey(),
+        key: _platformKey,
         width: widget.adSize.width.toDouble(),
         height: widget.adSize.height.toDouble(),
         child: UiKitView(
