@@ -28,10 +28,12 @@ class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChanne
       "load" -> {
         val id = call.argument<Int>("id")
         val adUnitId = call.argument<String>("adUnitId")
+        val userId = call.argument<String>("userId")
         val customData = call.argument<String>("customData")
         val adRequest = AdRequest.Builder().build()
 
         if (allAds[id] == null) allAds[id!!] = MobileAds.getRewardedVideoAdInstance(registrar.context())
+        allAds[id]?.userId = userId
         allAds[id]?.customData = customData
         allAds[id]?.loadAd(adUnitId, adRequest)
         result.success(null)
