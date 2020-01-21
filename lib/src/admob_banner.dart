@@ -34,7 +34,6 @@ class _AdmobBannerState extends State<AdmobBanner> {
         width: widget.adSize.width >= 0 ? widget.adSize.width.toDouble() : double.infinity,
         height: widget.adSize.height >= 0 ? widget.adSize.height.toDouble() : double.infinity,
         child: AndroidView(
-          key: _platformKey,
           viewType: 'admob_flutter/banner',
           creationParams: <String, dynamic>{
             "adUnitId": widget.adUnitId,
@@ -46,10 +45,10 @@ class _AdmobBannerState extends State<AdmobBanner> {
       );
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       return Container(
-        key: _platformKey,
         width: widget.adSize.width.toDouble(),
         height: widget.adSize.height.toDouble(),
         child: UiKitView(
+          key: _platformKey,
           viewType: 'admob_flutter/banner',
           creationParams: <String, dynamic>{
             "adUnitId": widget.adUnitId,
