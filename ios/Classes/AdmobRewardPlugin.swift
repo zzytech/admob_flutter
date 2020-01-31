@@ -58,7 +58,7 @@ public class AdmobRewardPlugin: NSObject, FlutterPlugin {
         case "load":
             let userId = args["userId"] as? String ?? ""
             let customData = args["customData"] as? String ?? ""
-            loadRewardBasedVideoAd(id: id, rewardBasedVideoAdUnitId: adUnitId, userId: userId)
+            loadRewardBasedVideoAd(id: id, rewardBasedVideoAdUnitId: adUnitId, userId: userId, customData: customData)
             result(nil)
             break
         case "isLoaded":
