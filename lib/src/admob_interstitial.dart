@@ -11,10 +11,12 @@ class AdmobInterstitial extends AdmobEventHandler {
   int id;
   MethodChannel _adChannel;
   final String adUnitId;
+  final String testDevice;
   final void Function(AdmobAdEvent, Map<String, dynamic>) listener;
 
   AdmobInterstitial({
     @required this.adUnitId,
+    this.testDevice,
     this.listener,
   }) : super(listener) {
     id = hashCode;
@@ -36,6 +38,9 @@ class AdmobInterstitial extends AdmobEventHandler {
     await _channel.invokeMethod('load', <String, dynamic>{
       'id': id,
       'adUnitId': adUnitId,
+      ...(testDevice?.isNotEmpty ?? false) ? <String, dynamic>{
+        'testDevice': testDevice,
+      } : <String, dynamic>{},
     });
 
     if (listener != null) {

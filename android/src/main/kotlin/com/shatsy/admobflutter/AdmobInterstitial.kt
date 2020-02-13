@@ -22,7 +22,8 @@ class AdmobInterstitial(private val registrar: PluginRegistry.Registrar): Method
       "load" -> {
         val id = call.argument<Int>("id")
         val adUnitId = call.argument<String>("adUnitId")
-        val adRequest = AdRequest.Builder().build()
+        val testDevice = call.argument<String>("testDevice")
+        val adRequest = AdRequest.Builder().addTestDevice(testDevice ?: "").build()
 
         if (allAds[id] == null) {
           allAds[id!!] = InterstitialAd(registrar.context())

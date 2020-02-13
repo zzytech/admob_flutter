@@ -11,12 +11,14 @@ class AdmobReward extends AdmobEventHandler {
   int id;
   MethodChannel _adChannel;
   final String adUnitId;
+  final String testDevice;
   final String userId;
   final String customData;
   final void Function(AdmobAdEvent, Map<String, dynamic>) listener;
 
   AdmobReward({
     @required this.adUnitId,
+    this.testDevice,
     this.userId,
     this.customData,
     this.listener,
@@ -41,10 +43,13 @@ class AdmobReward extends AdmobEventHandler {
       'id': id,
       'adUnitId': adUnitId,
     };
-    if (userId != null) {
+    if (testDevice?.isNotEmpty ?? false) {
+      args['testDevice'] = testDevice;
+    }
+    if (userId?.isNotEmpty ?? false) {
       args['userId'] = userId;
     }
-    if (customData != null) {
+    if (customData?.isNotEmpty ?? false) {
       args['customData'] = customData;
     }
     await _channel.invokeMethod('load', args);
