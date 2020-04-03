@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.google.android.ads.nativetemplates">
+  <!-- 如果这里有有效内容，请手动合并到 main/AndroidManifest.xml -->
+  <application android:supportsRtl="true">
+
+  </application>
+</manifest>
