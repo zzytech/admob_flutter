@@ -228,6 +228,8 @@ public class TemplateView extends FrameLayout {
     if (starRating != null && starRating > 0) {
       secondaryView.setVisibility(GONE);
       ratingBar.setVisibility(VISIBLE);
+      ratingBar.setRating(Math.max(Math.min(starRating.floatValue(), 5), 0));
+      ratingBar.setNumStars(5);
       ratingBar.setMax(5);
       nativeAdView.setStarRatingView(ratingBar);
     } else {
