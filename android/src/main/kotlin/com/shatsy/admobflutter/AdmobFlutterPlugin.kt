@@ -37,6 +37,9 @@ class AdmobFlutterPlugin(private val context: Context): MethodCallHandler {
       registrar
         .platformViewRegistry()
         .registerViewFactory("admob_flutter/banner", AdmobBannerFactory(registrar.messenger()))
+      registrar
+        .platformViewRegistry()
+        .registerViewFactory("admob_flutter/native_template", AdmobNativeTemplateFactory(registrar.messenger()))
     }
   }
 

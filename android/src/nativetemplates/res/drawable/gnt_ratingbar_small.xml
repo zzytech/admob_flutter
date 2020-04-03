@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/background">
+        <bitmap
+            android:src="@drawable/gnt_rate_star_small_off" />
+    </item>
+    <item android:id="@+id/secondaryProgress">
+        <bitmap
+            android:src="@drawable/gnt_rate_star_small_half" />
+    </item>
+    <item android:id="@+id/progress">
+        <bitmap
+            android:src="@drawable/gnt_rate_star_small_on" />
+    </item>
+</layer-list>

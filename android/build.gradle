@@ -29,6 +29,8 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        main.java.srcDirs += 'src/nativetemplates/java'
+        main.res.srcDirs += 'src/nativetemplates/res'
     }
     defaultConfig {
         minSdkVersion 16
@@ -41,5 +43,9 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api 'com.google.firebase:firebase-ads:18.3.0'
+
+    implementation 'com.google.firebase:firebase-ads:18.3.0'
+
+    // 模版依赖
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 }

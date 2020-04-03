@@ -216,6 +216,18 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Container(
+                    margin: EdgeInsets.zero,
+                    child: AdmobNativeTemplate(
+                      adUnitId: getNativeAdUnitId(),
+                      type: AdmobNativeTemplateType.medium,
+                      testDevice: '',
+                      listener:
+                          (AdmobAdEvent event, Map<String, dynamic> args) {
+                        handleEvent(event, args, 'NativeTemplate');
+                      },
+                    ),
+                  ),
+                  Container(
                     height: 200.0,
                     margin: EdgeInsets.only(bottom: 20.0),
                     color: Colors.cyan,
@@ -262,6 +274,10 @@ iOS: ca-app-pub-3940256099942544/4411468910
 Reward Video
 Android: ca-app-pub-3940256099942544/5224354917
 iOS: ca-app-pub-3940256099942544/1712485313
+
+Native
+Android: ca-app-pub-3940256099942544/6300978111
+iOS: ca-app-pub-3940256099942544/3986624511
 */
 
 String getAppId() {
@@ -300,3 +316,11 @@ String getRewardBasedVideoAdUnitId() {
   return null;
 }
 
+String getNativeAdUnitId() {
+  if (Platform.isIOS) {
+    return 'ca-app-pub-3940256099942544/3986624511';
+  } else if (Platform.isAndroid) {
+    return 'ca-app-pub-3940256099942544/2247696110';
+  }
+  return null;
+}
