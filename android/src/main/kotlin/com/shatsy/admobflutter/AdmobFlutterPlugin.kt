@@ -1,6 +1,8 @@
 package com.shatsy.admobflutter
 
+import android.app.Activity
 import android.content.Context
+import com.google.android.ads.mediationtestsuite.MediationTestSuite
 import com.google.android.gms.ads.AdListener
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -21,12 +23,12 @@ fun createAdListener(channel: MethodChannel) : AdListener {
   }
 }
 
-class AdmobFlutterPlugin(private val context: Context): MethodCallHandler {
+class AdmobFlutterPlugin(private val context: Context, private val activity: Activity): MethodCallHandler {
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val defaultChannel = MethodChannel(registrar.messenger(), "admob_flutter")
-      defaultChannel.setMethodCallHandler(AdmobFlutterPlugin(registrar.context()))
+      defaultChannel.setMethodCallHandler(AdmobFlutterPlugin(registrar.context(), registrar.activity()))
 
       val interstitialChannel = MethodChannel(registrar.messenger(), "admob_flutter/interstitial")
       interstitialChannel.setMethodCallHandler(AdmobInterstitial(registrar))
@@ -47,6 +49,13 @@ class AdmobFlutterPlugin(private val context: Context): MethodCallHandler {
     when(call.method) {
       "getPlatformVersion" -> result.success("Android ${android.os.Build.VERSION.RELEASE}")
       "initialize" -> MobileAds.initialize(context)
+      "launchTestSuite" -> {
+        val testDevice = call.argument<String>("testDevice")
+        if (!testDevice.isNullOrEmpty()) {
+          MediationTestSuite.addTestDevice(testDevice)
+        }
+        MediationTestSuite.launch(activity)
+      }
       else -> result.notImplemented()
     }
   }
