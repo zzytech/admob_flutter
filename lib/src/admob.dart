@@ -5,16 +5,18 @@ class Admob {
 
   static const MethodChannel _channel = MethodChannel('admob_flutter');
 
-  static Future<void> initialize(String appId) {
-    return _channel.invokeMethod('initialize', appId);
+  static void initialize(String appId) {
+    _channel.invokeMethod('initialize', appId);
   }
 
-  static Future<void> launchTestSuite({String testDevice}) {
-    return _channel.invokeMethod(
+  static void launchTestSuite({String testDevice}) {
+    _channel.invokeMethod(
       'launchTestSuite',
-      (testDevice?.isNotEmpty ?? false) ? <String, dynamic>{
-        'testDevice': testDevice
-      } : <String, dynamic>{},
+      (testDevice?.isNotEmpty ?? false)
+          ? <String, dynamic>{
+              'testDevice': testDevice,
+            }
+          : <String, dynamic>{},
     );
   }
 }
