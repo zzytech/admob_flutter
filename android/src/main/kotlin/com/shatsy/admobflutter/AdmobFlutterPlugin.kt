@@ -2,6 +2,7 @@ package com.shatsy.admobflutter
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import com.google.android.ads.mediationtestsuite.MediationTestSuite
 import com.google.android.gms.ads.AdListener
 import io.flutter.plugin.common.MethodCall
@@ -11,9 +12,12 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 import com.google.android.gms.ads.MobileAds
 
-fun createAdListener(channel: MethodChannel) : AdListener {
+fun createAdListener(channel: MethodChannel, getMediationAdapterClassName: () -> String?) : AdListener {
   return object: AdListener() {
-    override fun onAdLoaded() = channel.invokeMethod("loaded", null)
+    override fun onAdLoaded() {
+      Log.e("Google Admob", "mediation adapter class name: ${getMediationAdapterClassName()}")
+      channel.invokeMethod("loaded", null)
+    }
     override fun onAdFailedToLoad(errorCode: Int) = channel.invokeMethod("failedToLoad", hashMapOf("errorCode" to errorCode))
     override fun onAdClicked() = channel.invokeMethod("clicked", null)
     override fun onAdImpression() = channel.invokeMethod("impression", null)

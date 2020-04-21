@@ -1,5 +1,6 @@
 package com.shatsy.admobflutter
 
+import android.util.Log
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.reward.RewardItem
@@ -9,7 +10,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
 
-class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChannel.MethodCallHandler, RewardedVideoAdListener {
+class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChannel.MethodCallHandler {
   companion object {
     val allAds: MutableMap<Int, RewardedVideoAd> = mutableMapOf()
   }
@@ -23,7 +24,19 @@ class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChanne
         if (allAds[id]!!.rewardedVideoAdListener != null) return
 
         adChannel = MethodChannel(registrar.messenger(), "admob_flutter/reward_$id")
-        allAds[id]!!.rewardedVideoAdListener = this
+        allAds[id]!!.rewardedVideoAdListener = object: RewardedVideoAdListener {
+          override fun onRewardedVideoAdClosed() = adChannel.invokeMethod("closed", null)
+          override fun onRewardedVideoAdLeftApplication() = adChannel.invokeMethod("leftApplication", null)
+          override fun onRewardedVideoAdLoaded() {
+            Log.e("Google Admob", "mediation adapter class name: ${allAds[id]!!.mediationAdapterClassName}")
+            adChannel.invokeMethod("loaded", null)
+          }
+          override fun onRewardedVideoAdOpened() = adChannel.invokeMethod("opened", null)
+          override fun onRewardedVideoCompleted() = adChannel.invokeMethod("completed", null)
+          override fun onRewarded(reward: RewardItem?) = adChannel.invokeMethod("rewarded", hashMapOf("type" to (reward?.type ?: ""), "amount" to (reward?.amount ?: 0)))
+          override fun onRewardedVideoStarted() = adChannel.invokeMethod("started", null)
+          override fun onRewardedVideoAdFailedToLoad(errorCode: Int) = adChannel.invokeMethod("failedToLoad", hashMapOf("errorCode" to errorCode))
+        }
       }
       "load" -> {
         val id = call.argument<Int>("id")
@@ -66,13 +79,4 @@ class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChanne
       else -> result.notImplemented()
     }
   }
-
-  override fun onRewardedVideoAdClosed() = adChannel.invokeMethod("closed", null)
-  override fun onRewardedVideoAdLeftApplication() = adChannel.invokeMethod("leftApplication", null)
-  override fun onRewardedVideoAdLoaded() = adChannel.invokeMethod("loaded", null)
-  override fun onRewardedVideoAdOpened() = adChannel.invokeMethod("opened", null)
-  override fun onRewardedVideoCompleted() = adChannel.invokeMethod("completed", null)
-  override fun onRewarded(reward: RewardItem?) = adChannel.invokeMethod("rewarded", hashMapOf("type" to (reward?.type ?: ""), "amount" to (reward?.amount ?: 0)))
-  override fun onRewardedVideoStarted() = adChannel.invokeMethod("started", null)
-  override fun onRewardedVideoAdFailedToLoad(errorCode: Int) = adChannel.invokeMethod("failedToLoad", hashMapOf("errorCode" to errorCode))
 }

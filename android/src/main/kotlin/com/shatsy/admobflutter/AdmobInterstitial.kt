@@ -17,7 +17,7 @@ class AdmobInterstitial(private val registrar: PluginRegistry.Registrar): Method
         if (allAds[id]!!.adListener != null) return
 
         val adChannel = MethodChannel(registrar.messenger(), "admob_flutter/interstitial_$id")
-        allAds[id]!!.adListener = createAdListener(adChannel)
+        allAds[id]!!.adListener = createAdListener(adChannel, fun():String? = allAds[id]!!.mediationAdapterClassName)
       }
       "load" -> {
         val id = call.argument<Int>("id")
