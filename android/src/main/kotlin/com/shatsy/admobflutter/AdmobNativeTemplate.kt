@@ -1,9 +1,7 @@
 package com.shatsy.admobflutter
 
 import android.content.Context
-import android.util.Log
 import android.view.View
-import android.view.ViewTreeObserver
 import com.google.android.ads.nativetemplates.TemplateView
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
@@ -87,7 +85,7 @@ class AdmobNativeTemplate (private val context: Context, private val messenger: 
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when(call.method) {
-            "setListener" -> adListener = createAdListener(channel)
+            "setListener" -> adListener = createAdListener(channel, fun():String? = adView.mediationAdapterClassName)
             "dispose" -> dispose()
             else -> result.notImplemented()
         }
