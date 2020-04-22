@@ -14,7 +14,7 @@ abstract class AdmobEventHandler {
   Future<dynamic> handleEvent(MethodCall call) async {
     switch (call.method) {
       case 'loaded':
-        _listener(AdmobAdEvent.loaded, null);
+        _listener(AdmobAdEvent.loaded, Map<String, dynamic>.from(call.arguments));
         break;
       case 'failedToLoad':
         _listener(AdmobAdEvent.failedToLoad,
