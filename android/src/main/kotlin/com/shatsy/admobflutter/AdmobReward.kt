@@ -29,7 +29,7 @@ class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChanne
           override fun onRewardedVideoAdLeftApplication() = adChannel.invokeMethod("leftApplication", null)
           override fun onRewardedVideoAdLoaded() {
             Log.e("Google Admob", "mediation adapter class name: ${allAds[id]!!.mediationAdapterClassName}")
-            adChannel.invokeMethod("loaded", null)
+            adChannel.invokeMethod("loaded", mapOf("mediationAdapterClassName" to allAds[id]!!.mediationAdapterClassName))
           }
           override fun onRewardedVideoAdOpened() = adChannel.invokeMethod("opened", null)
           override fun onRewardedVideoCompleted() = adChannel.invokeMethod("completed", null)
@@ -46,7 +46,7 @@ class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChanne
         val customData = call.argument<String>("customData")
         val adRequest = AdRequest.Builder().addTestDevice(testDevice ?: "").build()
 
-        if (allAds[id] == null) allAds[id!!] = MobileAds.getRewardedVideoAdInstance(registrar.context())
+        if (allAds[id] == null) allAds[id!!] = MobileAds.getRewardedVideoAdInstance(registrar.activity())
         allAds[id]?.userId = userId
         allAds[id]?.customData = customData
         allAds[id]?.loadAd(adUnitId, adRequest)
