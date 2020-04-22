@@ -52,7 +52,7 @@ class AdmobFlutterPlugin(private val context: Context, private val activity: Act
   override fun onMethodCall(call: MethodCall, result: Result) {
     when(call.method) {
       "getPlatformVersion" -> result.success("Android ${android.os.Build.VERSION.RELEASE}")
-      "initialize" -> MobileAds.initialize(context)
+      "initialize" -> MobileAds.initialize(activity) // adcolony 需要用 activity
       "launchTestSuite" -> {
         val testDevice = call.argument<String>("testDevice")
         if (!testDevice.isNullOrEmpty()) {
