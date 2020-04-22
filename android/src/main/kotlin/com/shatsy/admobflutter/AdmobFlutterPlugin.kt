@@ -16,7 +16,7 @@ fun createAdListener(channel: MethodChannel, getMediationAdapterClassName: () ->
   return object: AdListener() {
     override fun onAdLoaded() {
       Log.e("Google Admob", "mediation adapter class name: ${getMediationAdapterClassName()}")
-      channel.invokeMethod("loaded", null)
+      channel.invokeMethod("loaded", mapOf("mediationAdapterClassName" to getMediationAdapterClassName()))
     }
     override fun onAdFailedToLoad(errorCode: Int) = channel.invokeMethod("failedToLoad", hashMapOf("errorCode" to errorCode))
     override fun onAdClicked() = channel.invokeMethod("clicked", null)
@@ -42,10 +42,10 @@ class AdmobFlutterPlugin(private val context: Context, private val activity: Act
 
       registrar
         .platformViewRegistry()
-        .registerViewFactory("admob_flutter/banner", AdmobBannerFactory(registrar.messenger()))
+        .registerViewFactory("admob_flutter/banner", AdmobBannerFactory(registrar.activity(), registrar.messenger()))
       registrar
         .platformViewRegistry()
-        .registerViewFactory("admob_flutter/native_template", AdmobNativeTemplateFactory(registrar.messenger()))
+        .registerViewFactory("admob_flutter/native_template", AdmobNativeTemplateFactory(registrar.activity(), registrar.messenger()))
     }
   }
 

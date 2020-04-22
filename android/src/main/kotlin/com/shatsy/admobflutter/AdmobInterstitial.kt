@@ -26,7 +26,7 @@ class AdmobInterstitial(private val registrar: PluginRegistry.Registrar): Method
         val adRequest = AdRequest.Builder().addTestDevice(testDevice ?: "").build()
 
         if (allAds[id] == null) {
-          allAds[id!!] = InterstitialAd(registrar.context())
+          allAds[id!!] = InterstitialAd(registrar.activity())
           allAds[id]!!.adUnitId = adUnitId
         }
         allAds[id]?.loadAd(adRequest)
