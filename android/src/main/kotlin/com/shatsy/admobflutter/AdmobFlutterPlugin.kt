@@ -3,6 +3,7 @@ package com.shatsy.admobflutter
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import com.google.ads.mediation.adcolony.AdColonyMediationAdapter
 import com.google.android.ads.mediationtestsuite.MediationTestSuite
 import com.google.android.gms.ads.AdListener
 import io.flutter.plugin.common.MethodCall
@@ -52,7 +53,12 @@ class AdmobFlutterPlugin(private val context: Context, private val activity: Act
   override fun onMethodCall(call: MethodCall, result: Result) {
     when(call.method) {
       "getPlatformVersion" -> result.success("Android ${android.os.Build.VERSION.RELEASE}")
-      "initialize" -> MobileAds.initialize(activity) // adcolony 需要用 activity
+      "initialize" -> {
+        MobileAds.initialize(activity) // adcolony 需要用 activity
+        val options = AdColonyMediationAdapter.getAppOptions()
+        options.keepScreenOn = true
+        options.gdprRequired = true
+      }
       "launchTestSuite" -> {
         val testDevice = call.argument<String>("testDevice")
         if (!testDevice.isNullOrEmpty()) {
