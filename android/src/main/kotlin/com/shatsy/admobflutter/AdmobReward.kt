@@ -1,11 +1,14 @@
 package com.shatsy.admobflutter
 
+import android.os.Bundle
 import android.util.Log
+import com.google.ads.mediation.adcolony.AdColonyMediationAdapter
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.reward.RewardItem
 import com.google.android.gms.ads.reward.RewardedVideoAd
 import com.google.android.gms.ads.reward.RewardedVideoAdListener
+import com.jirbo.adcolony.AdColonyAdapter
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
@@ -25,15 +28,24 @@ class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChanne
 
         adChannel = MethodChannel(registrar.messenger(), "admob_flutter/reward_$id")
         allAds[id]!!.rewardedVideoAdListener = object: RewardedVideoAdListener {
-          override fun onRewardedVideoAdClosed() = adChannel.invokeMethod("closed", null)
+          override fun onRewardedVideoAdClosed() {
+//            Log.e("Google Admob", "Reward close ~~~")
+            adChannel.invokeMethod("closed", null)
+          }
           override fun onRewardedVideoAdLeftApplication() = adChannel.invokeMethod("leftApplication", null)
           override fun onRewardedVideoAdLoaded() {
             Log.e("Google Admob", "mediation adapter class name: ${allAds[id]!!.mediationAdapterClassName}")
             adChannel.invokeMethod("loaded", mapOf("mediationAdapterClassName" to allAds[id]!!.mediationAdapterClassName))
           }
           override fun onRewardedVideoAdOpened() = adChannel.invokeMethod("opened", null)
-          override fun onRewardedVideoCompleted() = adChannel.invokeMethod("completed", null)
-          override fun onRewarded(reward: RewardItem?) = adChannel.invokeMethod("rewarded", hashMapOf("type" to (reward?.type ?: ""), "amount" to (reward?.amount ?: 0)))
+          override fun onRewardedVideoCompleted() {
+//            Log.e("Google Admob", "Reward complete ~~~")
+            adChannel.invokeMethod("completed", null)
+          }
+          override fun onRewarded(reward: RewardItem?) {
+//            Log.e("Google Admob", "Reward reward ~~~")
+            adChannel.invokeMethod("rewarded", hashMapOf("type" to (reward?.type ?: ""), "amount" to (reward?.amount ?: 0)))
+          }
           override fun onRewardedVideoStarted() = adChannel.invokeMethod("started", null)
           override fun onRewardedVideoAdFailedToLoad(errorCode: Int) = adChannel.invokeMethod("failedToLoad", hashMapOf("errorCode" to errorCode))
         }
@@ -44,7 +56,14 @@ class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChanne
         val testDevice = call.argument<String>("testDevice")
         val userId = call.argument<String>("userId")
         val customData = call.argument<String>("customData")
-        val adRequest = AdRequest.Builder().addTestDevice(testDevice ?: "").build()
+//        val networkExtras = Bundle()
+//        networkExtras.putBoolean("show_pre_popup", false)
+//        networkExtras.putBoolean("show_post_popup", true)
+//        val options = AdColonyMediationAdapter.getAppOptions()
+//        options.userID = userId
+        val adRequest = AdRequest.Builder().addTestDevice(testDevice ?: "")
+//                .addNetworkExtrasBundle(AdColonyAdapter::class.java, networkExtras)
+                .build()
 
         if (allAds[id] == null) allAds[id!!] = MobileAds.getRewardedVideoAdInstance(registrar.activity())
         allAds[id]?.userId = userId

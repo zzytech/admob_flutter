@@ -6,7 +6,7 @@ import 'package:admob_flutter/admob_flutter.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Admob.initialize(getAppId());
+  Admob.initialize(getAppId(), mopubAdUnitId: 'xyz');
   runApp(MyApp());
 }
 
@@ -115,6 +115,19 @@ class _MyAppState extends State<MyApp> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Expanded(
+                    child: FlatButton(
+                      child: Text(
+                        'Test Suite',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () async {
+                        Admob.launchTestSuite();
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.zero),
+                    ),
+                  ),
                   Expanded(
                     child: FlatButton(
                       child: Text(

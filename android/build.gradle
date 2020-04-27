@@ -19,8 +19,14 @@ rootProject.allprojects {
         google()
         jcenter()
 
+        // adcolony
         maven {
             url  "https://adcolony.bintray.com/AdColony"
+        }
+
+        // mopub
+        maven {
+            url 'https://s3.amazonaws.com/moat-sdk-builds'
         }
     }
 }
@@ -50,10 +56,15 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-ads:18.3.0'
 
-    // admob adcolony中介接入地址 https://developers.google.com/admob/android/mediation/adcolony
-    implementation 'com.google.ads.mediation:adcolony:4.1.4.0'
     // admob 中介测试套件文档地址 https://developers.google.com/admob/android/mediation-test-suite
     implementation 'com.google.android.ads:mediation-test-suite:1.3.0'
+
+    // admob adcolony https://developers.google.com/admob/android/mediation/adcolony
+    implementation 'com.google.ads.mediation:adcolony:4.1.4.0'
+    // admob mopub https://developers.google.com/admob/android/mediation/mopub
+    implementation('com.google.ads.mediation:mopub:5.11.1.1') {
+        exclude group: "com.google.guava", module: "listenablefuture"
+    }
 
     // 模版依赖
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

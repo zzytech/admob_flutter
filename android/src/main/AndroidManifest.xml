@@ -2,9 +2,15 @@
   package="com.shatsy.admobflutter">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- AdColony -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- MoPub -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
 
     <application android:usesCleartextTraffic="true"></application>
 </manifest>

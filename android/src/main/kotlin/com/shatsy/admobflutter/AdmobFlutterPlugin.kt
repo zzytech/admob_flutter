@@ -6,12 +6,15 @@ import android.util.Log
 import com.google.ads.mediation.adcolony.AdColonyMediationAdapter
 import com.google.android.ads.mediationtestsuite.MediationTestSuite
 import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.MobileAds
+import com.mopub.common.MoPub
+import com.mopub.common.SdkConfiguration
+import com.mopub.common.logging.MoPubLog
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
-import com.google.android.gms.ads.MobileAds
 
 fun createAdListener(channel: MethodChannel, getMediationAdapterClassName: () -> String?) : AdListener {
   return object: AdListener() {
@@ -54,10 +57,15 @@ class AdmobFlutterPlugin(private val context: Context, private val activity: Act
     when(call.method) {
       "getPlatformVersion" -> result.success("Android ${android.os.Build.VERSION.RELEASE}")
       "initialize" -> {
+//        val appId = call.argument<String>("appId")
         MobileAds.initialize(activity) // adcolony 需要用 activity
+        // adcolony
         val options = AdColonyMediationAdapter.getAppOptions()
         options.keepScreenOn = true
         options.gdprRequired = true
+        // mopub
+        val mopubAdUnitId = call.argument<String>("mopubAdUnitId") // 任意有效的广告ID
+        MoPub.initializeSdk(context, SdkConfiguration.Builder(mopubAdUnitId!!).withLogLevel(MoPubLog.LogLevel.INFO).build(), null);
       }
       "launchTestSuite" -> {
         val testDevice = call.argument<String>("testDevice")
