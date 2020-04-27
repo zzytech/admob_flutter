@@ -1,14 +1,11 @@
 package com.shatsy.admobflutter
 
-import android.os.Bundle
 import android.util.Log
-import com.google.ads.mediation.adcolony.AdColonyMediationAdapter
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.reward.RewardItem
 import com.google.android.gms.ads.reward.RewardedVideoAd
 import com.google.android.gms.ads.reward.RewardedVideoAdListener
-import com.jirbo.adcolony.AdColonyAdapter
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
@@ -56,13 +53,7 @@ class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChanne
         val testDevice = call.argument<String>("testDevice")
         val userId = call.argument<String>("userId")
         val customData = call.argument<String>("customData")
-//        val networkExtras = Bundle()
-//        networkExtras.putBoolean("show_pre_popup", false)
-//        networkExtras.putBoolean("show_post_popup", true)
-//        val options = AdColonyMediationAdapter.getAppOptions()
-//        options.userID = userId
         val adRequest = AdRequest.Builder().addTestDevice(testDevice ?: "")
-//                .addNetworkExtrasBundle(AdColonyAdapter::class.java, networkExtras)
                 .build()
 
         if (allAds[id] == null) allAds[id!!] = MobileAds.getRewardedVideoAdInstance(registrar.activity())
