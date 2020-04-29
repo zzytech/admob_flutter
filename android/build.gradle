@@ -19,11 +19,6 @@ rootProject.allprojects {
         google()
         jcenter()
 
-        // adcolony
-        maven {
-            url  "https://adcolony.bintray.com/AdColony"
-        }
-
         // mopub
         maven {
             url 'https://s3.amazonaws.com/moat-sdk-builds'
@@ -64,6 +59,7 @@ dependencies {
     implementation('com.google.ads.mediation:mopub:5.11.1.1') {
         exclude group: "com.google.guava", module: "listenablefuture"
     }
+    implementation 'com.google.ads.mediation:inmobi:9.0.2.0'
 
     // 模版依赖
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
