@@ -22,6 +22,9 @@ rootProject.allprojects {
         // mopub
         maven {
             url 'https://s3.amazonaws.com/moat-sdk-builds'
+            content {
+                includeGroupByRegex("com\\.moat.*")
+            }
         }
     }
 }
