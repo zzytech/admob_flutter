@@ -30,12 +30,12 @@ fun createAdListener(channel: MethodChannel, getMediationAdapterClassName: () ->
   }
 }
 
-class AdmobFlutterPlugin(private val context: Context, private val activity: Activity): MethodCallHandler {
+class AdmobFlutterPlugin(private val registrar: Registrar): MethodCallHandler {
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val defaultChannel = MethodChannel(registrar.messenger(), "admob_flutter")
-      defaultChannel.setMethodCallHandler(AdmobFlutterPlugin(registrar.context(), registrar.activity()))
+      defaultChannel.setMethodCallHandler(AdmobFlutterPlugin(registrar))
 
       val interstitialChannel = MethodChannel(registrar.messenger(), "admob_flutter/interstitial")
       interstitialChannel.setMethodCallHandler(AdmobInterstitial(registrar))
@@ -45,10 +45,10 @@ class AdmobFlutterPlugin(private val context: Context, private val activity: Act
 
       registrar
         .platformViewRegistry()
-        .registerViewFactory("admob_flutter/banner", AdmobBannerFactory(registrar.activity(), registrar.messenger()))
+        .registerViewFactory("admob_flutter/banner", AdmobBannerFactory(registrar))
       registrar
         .platformViewRegistry()
-        .registerViewFactory("admob_flutter/native_template", AdmobNativeTemplateFactory(registrar.activity(), registrar.messenger()))
+        .registerViewFactory("admob_flutter/native_template", AdmobNativeTemplateFactory(registrar))
     }
   }
 
@@ -58,17 +58,17 @@ class AdmobFlutterPlugin(private val context: Context, private val activity: Act
       "initialize" -> {
         // admob
 //        val appId = call.argument<String>("appId")
-        MobileAds.initialize(activity) // adcolony 需要用 activity
+        MobileAds.initialize(registrar.activity()) // adcolony 需要用 activity
         // mopub
         val mopubAdUnitId = call.argument<String>("mopubAdUnitId") // 任意有效的广告ID
-        MoPub.initializeSdk(context, SdkConfiguration.Builder(mopubAdUnitId!!).withLogLevel(MoPubLog.LogLevel.INFO).build(), null);
+        MoPub.initializeSdk(registrar.context(), SdkConfiguration.Builder(mopubAdUnitId!!).withLogLevel(MoPubLog.LogLevel.INFO).build(), null);
       }
       "launchTestSuite" -> {
         val testDevice = call.argument<String>("testDevice")
         if (!testDevice.isNullOrEmpty()) {
           MediationTestSuite.addTestDevice(testDevice)
         }
-        MediationTestSuite.launch(activity)
+        MediationTestSuite.launch(registrar.activity())
       }
       else -> result.notImplemented()
     }
