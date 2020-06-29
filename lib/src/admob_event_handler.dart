@@ -12,13 +12,13 @@ abstract class AdmobEventHandler {
       : _listener = listener;
 
   Future<dynamic> handleEvent(MethodCall call) async {
+    print('call.method === ${call.method}');
     switch (call.method) {
       case 'loaded':
-        _listener(AdmobAdEvent.loaded, Map<String, dynamic>.from(call.arguments));
+        _listener(AdmobAdEvent.loaded, Map<String, dynamic>.from(call.arguments ?? {}));
         break;
       case 'failedToLoad':
-        _listener(AdmobAdEvent.failedToLoad,
-            Map<String, dynamic>.from(call.arguments));
+        _listener(AdmobAdEvent.failedToLoad, Map<String, dynamic>.from(call.arguments ?? {}));
         break;
       case 'clicked':
         _listener(AdmobAdEvent.clicked, null);
@@ -40,7 +40,7 @@ abstract class AdmobEventHandler {
         break;
       case 'rewarded':
         _listener(
-            AdmobAdEvent.rewarded, Map<String, dynamic>.from(call.arguments));
+            AdmobAdEvent.rewarded, Map<String, dynamic>.from(call.arguments ?? {}));
         break;
       case 'started':
         _listener(AdmobAdEvent.started, null);

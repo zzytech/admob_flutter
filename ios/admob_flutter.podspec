@@ -22,9 +22,17 @@ Admob plugin that shows banner ads using native platform views.
   s.dependency 'Firebase/Analytics'
   s.dependency 'FirebaseAnalytics', '~> 6.1.3'
   s.dependency 'Firebase/AdMob'
-  s.dependency 'Google-Mobile-Ads-SDK', '~> 7.50'
+  s.dependency 'Google-Mobile-Ads-SDK', '~> 7.60.0'
+  s.dependency 'GoogleMobileAdsMediationTestSuite'
+  s.dependency 'GoogleMobileAdsMediationAdColony', '~> 4.1.4.1'
+  s.dependency 'GoogleMobileAdsMediationInMobi'
+  s.dependency 'GoogleMobileAdsMediationFacebook', '~> 5.9.0.0'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.static_framework = true
+  s.resources = [
+    'Assets/**/*',
+    'Classes/**/*.{storyboard,xib}'
+  ]
 end
 

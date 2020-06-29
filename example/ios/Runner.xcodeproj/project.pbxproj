@@ -9,14 +9,23 @@
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
-		3B80C3941E831B6300D905FE /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; };
-		3B80C3951E831B6300D905FE /* App.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
-		9705A1C61CF904A100538489 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9740EEBA1CF902C7004384FC /* Flutter.framework */; };
-		9705A1C71CF904A300538489 /* Flutter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9740EEBA1CF902C7004384FC /* Flutter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		DD2E3B55249B5D02004A34EE /* SwiftAdmobFlutterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E3B4A249B5D02004A34EE /* SwiftAdmobFlutterPlugin.swift */; };
+		DD2E3B56249B5D02004A34EE /* AdmobFlutterPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2E3B4B249B5D02004A34EE /* AdmobFlutterPlugin.m */; };
+		DD2E3B57249B5D02004A34EE /* AdmobBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E3B4C249B5D02004A34EE /* AdmobBanner.swift */; };
+		DD2E3B58249B5D02004A34EE /* AdmobBannerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E3B4D249B5D02004A34EE /* AdmobBannerFactory.swift */; };
+		DD2E3B59249B5D03004A34EE /* AdmobRewardPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E3B4F249B5D02004A34EE /* AdmobRewardPlugin.swift */; };
+		DD2E3B5A249B5D03004A34EE /* AdmobInterstitialPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E3B50249B5D02004A34EE /* AdmobInterstitialPlugin.swift */; };
+		DD2E3B5B249B5D03004A34EE /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DD2E3B51249B5D02004A34EE /* .gitignore */; };
+		DD2E3B5C249B5D03004A34EE /* admob_flutter.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DD2E3B52249B5D02004A34EE /* admob_flutter.podspec */; };
+		DD2E3B5D249B5D03004A34EE /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = DD2E3B54249B5D02004A34EE /* .gitkeep */; };
+		DD2E3B5F249B5D9E004A34EE /* AdmobNativeTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E3B5E249B5D9E004A34EE /* AdmobNativeTemplate.swift */; };
+		DD440D6724A868A60034AEF3 /* AdmobNativeTemplateFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD440D6624A868A60034AEF3 /* AdmobNativeTemplateFactory.swift */; };
+		DD440D7624A994AF0034AEF3 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD440D7524A994AE0034AEF3 /* UnifiedNativeAdView.xib */; };
+		DD440D7C24A9BB300034AEF3 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD440D7B24A9BB300034AEF3 /* Media.xcassets */; };
 		E7A1118201BCA9D718CC3ED4 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D7FA5CEB975A68FF05067C /* Pods_Runner.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,8 +36,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3B80C3951E831B6300D905FE /* App.framework in Embed Frameworks */,
-				9705A1C71CF904A300538489 /* Flutter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,14 +47,12 @@
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		24D7FA5CEB975A68FF05067C /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
-		3B80C3931E831B6300D905FE /* App.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = App.framework; path = Flutter/App.framework; sourceTree = "<group>"; };
 		60E4F89FB3CA779FE21111C3 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
-		9740EEBA1CF902C7004384FC /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = Flutter/Flutter.framework; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C146FB1CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +60,20 @@
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F4D6C33C6C390F42E506F21 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		A09C8DAD180952151FDA7CAA /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		DD2E3B4A249B5D02004A34EE /* SwiftAdmobFlutterPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAdmobFlutterPlugin.swift; sourceTree = "<group>"; };
+		DD2E3B4B249B5D02004A34EE /* AdmobFlutterPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdmobFlutterPlugin.m; sourceTree = "<group>"; };
+		DD2E3B4C249B5D02004A34EE /* AdmobBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdmobBanner.swift; sourceTree = "<group>"; };
+		DD2E3B4D249B5D02004A34EE /* AdmobBannerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdmobBannerFactory.swift; sourceTree = "<group>"; };
+		DD2E3B4E249B5D02004A34EE /* AdmobFlutterPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdmobFlutterPlugin.h; sourceTree = "<group>"; };
+		DD2E3B4F249B5D02004A34EE /* AdmobRewardPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdmobRewardPlugin.swift; sourceTree = "<group>"; };
+		DD2E3B50249B5D02004A34EE /* AdmobInterstitialPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdmobInterstitialPlugin.swift; sourceTree = "<group>"; };
+		DD2E3B51249B5D02004A34EE /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		DD2E3B52249B5D02004A34EE /* admob_flutter.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = admob_flutter.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		DD2E3B54249B5D02004A34EE /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		DD2E3B5E249B5D9E004A34EE /* AdmobNativeTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmobNativeTemplate.swift; sourceTree = "<group>"; };
+		DD440D6624A868A60034AEF3 /* AdmobNativeTemplateFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmobNativeTemplateFactory.swift; sourceTree = "<group>"; };
+		DD440D7524A994AE0034AEF3 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
+		DD440D7B24A9BB300034AEF3 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +81,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9705A1C61CF904A100538489 /* Flutter.framework in Frameworks */,
-				3B80C3941E831B6300D905FE /* App.framework in Frameworks */,
 				E7A1118201BCA9D718CC3ED4 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,9 +101,7 @@
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
-				3B80C3931E831B6300D905FE /* App.framework */,
 				3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */,
-				9740EEBA1CF902C7004384FC /* Flutter.framework */,
 				9740EEB21CF90195004384FC /* Debug.xcconfig */,
 				7AFA3C8E1D35360C0083082E /* Release.xcconfig */,
 				9740EEB31CF90195004384FC /* Generated.xcconfig */,
@@ -97,6 +112,7 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
+				DD2E3B48249B5D02004A34EE /* ios */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
@@ -144,6 +160,44 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DD2E3B48249B5D02004A34EE /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				DD2E3B49249B5D02004A34EE /* Classes */,
+				DD2E3B51249B5D02004A34EE /* .gitignore */,
+				DD2E3B52249B5D02004A34EE /* admob_flutter.podspec */,
+				DD2E3B53249B5D02004A34EE /* Assets */,
+			);
+			name = ios;
+			path = ../../ios;
+			sourceTree = "<group>";
+		};
+		DD2E3B49249B5D02004A34EE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DD2E3B4A249B5D02004A34EE /* SwiftAdmobFlutterPlugin.swift */,
+				DD2E3B4B249B5D02004A34EE /* AdmobFlutterPlugin.m */,
+				DD2E3B4C249B5D02004A34EE /* AdmobBanner.swift */,
+				DD2E3B4D249B5D02004A34EE /* AdmobBannerFactory.swift */,
+				DD2E3B4E249B5D02004A34EE /* AdmobFlutterPlugin.h */,
+				DD2E3B4F249B5D02004A34EE /* AdmobRewardPlugin.swift */,
+				DD2E3B50249B5D02004A34EE /* AdmobInterstitialPlugin.swift */,
+				DD2E3B5E249B5D9E004A34EE /* AdmobNativeTemplate.swift */,
+				DD440D6624A868A60034AEF3 /* AdmobNativeTemplateFactory.swift */,
+				DD440D7524A994AE0034AEF3 /* UnifiedNativeAdView.xib */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DD2E3B53249B5D02004A34EE /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				DD2E3B54249B5D02004A34EE /* .gitkeep */,
+				DD440D7B24A9BB300034AEF3 /* Media.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,6 +213,7 @@
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				3B2827B43CA000B33FB12A3D /* [CP] Embed Pods Frameworks */,
+				1CEB06BC9E30EE95B251A0BB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -207,10 +262,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD2E3B5B249B5D03004A34EE /* .gitignore in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				DD440D7624A994AF0034AEF3 /* UnifiedNativeAdView.xib in Resources */,
+				DD2E3B5C249B5D03004A34EE /* admob_flutter.podspec in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+				DD440D7C24A9BB300034AEF3 /* Media.xcassets in Resources */,
+				DD2E3B5D249B5D03004A34EE /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +299,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		1CEB06BC9E30EE95B251A0BB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,7 +326,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" thin";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
 		};
 		3B2827B43CA000B33FB12A3D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -289,8 +364,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD440D6724A868A60034AEF3 /* AdmobNativeTemplateFactory.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				DD2E3B55249B5D02004A34EE /* SwiftAdmobFlutterPlugin.swift in Sources */,
+				DD2E3B57249B5D02004A34EE /* AdmobBanner.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				DD2E3B59249B5D03004A34EE /* AdmobRewardPlugin.swift in Sources */,
+				DD2E3B5F249B5D9E004A34EE /* AdmobNativeTemplate.swift in Sources */,
+				DD2E3B58249B5D02004A34EE /* AdmobBannerFactory.swift in Sources */,
+				DD2E3B5A249B5D03004A34EE /* AdmobInterstitialPlugin.swift in Sources */,
+				DD2E3B56249B5D02004A34EE /* AdmobFlutterPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

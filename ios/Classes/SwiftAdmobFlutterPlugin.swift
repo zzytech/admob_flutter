@@ -31,6 +31,11 @@ public class SwiftAdmobFlutterPlugin: NSObject, FlutterPlugin {
         AdmobBannerFactory(messeneger: registrar.messenger()),
         withId: "admob_flutter/banner"
     )
+    
+    registrar.register(
+        AdmobNativeTemplateFactory(messeneger: registrar.messenger()),
+        withId: "admob_flutter/native_template"
+    )
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
