@@ -88,7 +88,7 @@ extension AdmobNativeTemplate : GADUnifiedNativeAdLoaderDelegate {
         self.adView?.nativeAd = nativeAd;
         nativeAd.delegate = self;
         self.adView?.subviews.last(where: { (view) -> Bool in
-            return view.isKind(of: UIImageView.self);
+            return view.tag == 10001;
         })?.isHidden = true;
         
         (self.adView?.headlineView as? UILabel)?.text = nativeAd.headline;
