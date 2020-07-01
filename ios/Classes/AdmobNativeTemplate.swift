@@ -176,4 +176,16 @@ extension AdmobNativeTemplate : GADVideoControllerDelegate {
     func videoControllerDidEndVideoPlayback(_ videoController: GADVideoController) {
         
     }
+    func videoControllerDidMuteVideo(_ videoController: GADVideoController) {
+        
+    }
+    func videoControllerDidPlayVideo(_ videoController: GADVideoController) {
+        
+    }
+    func videoControllerDidPauseVideo(_ videoController: GADVideoController) {
+        
+    }
+    func videoControllerDidUnmuteVideo(_ videoController: GADVideoController) {
+        
+    }
 }

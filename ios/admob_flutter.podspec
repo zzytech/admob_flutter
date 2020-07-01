@@ -31,8 +31,8 @@ Admob plugin that shows banner ads using native platform views.
   s.ios.deployment_target = '9.0'
   s.static_framework = true
   s.resources = [
+    'Assets/**/*.{storyboard,xib}',
     'Assets/**/*',
-    'Classes/**/*.{storyboard,xib}'
   ]
 end
 
