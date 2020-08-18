@@ -40,7 +40,8 @@ class AdmobNativeTemplate : NSObject, FlutterPlatformView {
     
     fileprivate func getNativeTemplate() -> GADUnifiedNativeAdView? {
         if adView == nil {
-            adView = (Bundle.main.loadNibNamed("UnifiedNativeAdView", owner: self, options: nil)?.last as! GADUnifiedNativeAdView) ;
+            let bundle: Bundle? = Bundle.init(path: Bundle.main.path(forResource: "Admob", ofType: "bundle") ?? "")
+            adView = (bundle?.loadNibNamed("UnifiedNativeAdView", owner: self, options: nil)?.last as! GADUnifiedNativeAdView) ;
             adView!.frame = self.frame.width == 0 ? CGRect(x: 0, y: 0, width: 1, height: 1) : self.frame;
             
             let adOptions : GADNativeAdViewAdOptions = GADNativeAdViewAdOptions();
@@ -127,14 +128,15 @@ extension AdmobNativeTemplate : GADUnifiedNativeAdLoaderDelegate {
     
     func imageForStars(numberOfStars:  NSDecimalNumber) -> UIImage? {
         let starRating = numberOfStars.doubleValue;
+        let bundle: Bundle? = Bundle.init(path: Bundle.main.path(forResource: "Admob", ofType: "bundle") ?? "")
         if starRating >= 5 {
-            return UIImage.init(named: "stars_5");
+            return UIImage(named: "stars_5", in: bundle, compatibleWith: nil);
         } else if (starRating >= 4.5) {
-            return UIImage.init(named: "stars_4_5");
+            return UIImage(named: "stars_4_5", in: bundle, compatibleWith: nil);
         } else if (starRating >= 4) {
-            return UIImage.init(named: "stars_4");
+            return UIImage(named: "stars_4", in: bundle, compatibleWith: nil);
         } else if (starRating >= 3.5) {
-            return UIImage.init(named: "stars_3_5");
+            return UIImage(named: "stars_3_5", in: bundle, compatibleWith: nil);
         } else {
             return nil;
         }
