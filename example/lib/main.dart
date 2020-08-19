@@ -6,7 +6,7 @@ import 'package:admob_flutter/admob_flutter.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Admob.initialize(getAppId(), mopubAdUnitId: 'xyz');
+  Admob.initialize(getAppId());
   runApp(MyApp());
 }
 

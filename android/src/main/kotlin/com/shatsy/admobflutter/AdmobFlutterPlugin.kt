@@ -1,14 +1,9 @@
 package com.shatsy.admobflutter
 
-import android.app.Activity
-import android.content.Context
 import android.util.Log
 import com.google.android.ads.mediationtestsuite.MediationTestSuite
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.MobileAds
-import com.mopub.common.MoPub
-import com.mopub.common.SdkConfiguration
-import com.mopub.common.logging.MoPubLog
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -59,9 +54,6 @@ class AdmobFlutterPlugin(private val registrar: Registrar): MethodCallHandler {
         // admob
 //        val appId = call.argument<String>("appId")
         MobileAds.initialize(registrar.activity()) // adcolony 需要用 activity
-        // mopub
-        val mopubAdUnitId = call.argument<String>("mopubAdUnitId") // 任意有效的广告ID
-        MoPub.initializeSdk(registrar.context(), SdkConfiguration.Builder(mopubAdUnitId!!).withLogLevel(MoPubLog.LogLevel.INFO).build(), null);
       }
       "launchTestSuite" -> {
         val testDevice = call.argument<String>("testDevice")

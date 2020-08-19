@@ -6,10 +6,9 @@ class Admob {
 
   static const MethodChannel _channel = MethodChannel('admob_flutter');
 
-  static void initialize(String appId, {@required String mopubAdUnitId}) {
+  static void initialize(String appId) {
     _channel.invokeMethod('initialize', <String, dynamic> {
       'appId': appId,
-      'mopubAdUnitId': mopubAdUnitId,
     });
   }
 
