@@ -24,7 +24,6 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-apply from: "${rootProject.findProject(":admob_flutter").projectDir}/admob_flutter.gradle"
 
 android {
     compileSdkVersion 28
