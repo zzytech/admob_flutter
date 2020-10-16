@@ -27,7 +27,7 @@ class AdmobBanner extends StatefulWidget {
 
 class _AdmobBannerState extends State<AdmobBanner> {
   AdmobBannerController _controller;
-  Key _platformKey = GlobalKey();
+  final Key _platformKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class _AdmobBannerState extends State<AdmobBanner> {
         child: AndroidView(
           viewType: 'admob_flutter/banner',
           creationParams: <String, dynamic>{
-            "adUnitId": widget.adUnitId,
-            "adSize": widget.adSize.toMap,
+            'adUnitId': widget.adUnitId,
+            'adSize': widget.adSize.toMap,
             ...(widget.testDevice?.isNotEmpty ?? false) ? <String, dynamic>{
               'testDevice': widget.testDevice,
             } : <String, dynamic>{},
@@ -56,8 +56,8 @@ class _AdmobBannerState extends State<AdmobBanner> {
           key: _platformKey,
           viewType: 'admob_flutter/banner',
           creationParams: <String, dynamic>{
-            "adUnitId": widget.adUnitId,
-            "adSize": widget.adSize.toMap,
+            'adUnitId': widget.adUnitId,
+            'adSize': widget.adSize.toMap,
           },
           creationParamsCodec: StandardMessageCodec(),
           onPlatformViewCreated: _onPlatformViewCreated,
