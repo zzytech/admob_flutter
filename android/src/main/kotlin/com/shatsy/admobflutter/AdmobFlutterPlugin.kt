@@ -1,7 +1,6 @@
 package com.shatsy.admobflutter
 
 import android.util.Log
-import com.google.android.ads.mediationtestsuite.MediationTestSuite
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.MobileAds
 import io.flutter.plugin.common.MethodCall
@@ -49,18 +48,15 @@ class AdmobFlutterPlugin(private val registrar: Registrar): MethodCallHandler {
 
   override fun onMethodCall(call: MethodCall, result: Result) {
     when(call.method) {
-      "getPlatformVersion" -> result.success("Android ${android.os.Build.VERSION.RELEASE}")
       "initialize" -> {
         // admob
-//        val appId = call.argument<String>("appId")
         MobileAds.initialize(registrar.activity()) // adcolony 需要用 activity
+        result.success(null)
       }
       "launchTestSuite" -> {
         val testDevice = call.argument<String>("testDevice")
-        if (!testDevice.isNullOrEmpty()) {
-          MediationTestSuite.addTestDevice(testDevice)
-        }
-        MediationTestSuite.launch(registrar.activity())
+        TestSuite.launchTestSuite(registrar.activity(), testDevice)
+        result.success(null)
       }
       else -> result.notImplemented()
     }
