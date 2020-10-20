@@ -85,8 +85,14 @@ class AdmobNativeTemplate (private val context: Context, private val messenger: 
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when(call.method) {
-            "setListener" -> adListener = createAdListener(channel, fun():String? = adView.mediationAdapterClassName)
-            "dispose" -> dispose()
+            "setListener" -> {
+                adListener = createAdListener(channel, fun():String? = adView.mediationAdapterClassName)
+                result.success(null)
+            }
+            "dispose" -> {
+                dispose()
+                result.success(null)
+            }
             else -> result.notImplemented()
         }
     }

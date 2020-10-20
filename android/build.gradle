@@ -47,7 +47,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-ads:19.4.0'
 
     // admob 中介测试套件文档地址 https://developers.google.com/admob/android/mediation-test-suite
-    implementation 'com.google.android.ads:mediation-test-suite:1.4.0'
+    debugImplementation 'com.google.android.ads:mediation-test-suite:1.4.0'
 
     // implementation 'com.google.ads.mediation:inmobi:9.1.0.0' // gradle 兼容
     implementation 'com.google.ads.mediation:facebook:6.1.0.0'

@@ -50,8 +50,14 @@ class AdmobBanner(context: Context, messenger: BinaryMessenger, id: Int, args: H
 
   override fun onMethodCall(call: MethodCall, result: Result) {
     when(call.method) {
-      "setListener" -> adView.adListener = createAdListener(channel, fun():String? = adView.mediationAdapterClassName)
-      "dispose" -> dispose()
+      "setListener" -> {
+        adView.adListener = createAdListener(channel, fun():String? = adView.mediationAdapterClassName)
+        result.success(null)
+      }
+      "dispose" -> {
+        dispose()
+        result.success(null)
+      }
       else -> result.notImplemented()
     }
   }

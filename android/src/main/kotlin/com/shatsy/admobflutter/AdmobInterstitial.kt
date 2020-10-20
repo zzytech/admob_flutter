@@ -18,6 +18,7 @@ class AdmobInterstitial(private val registrar: PluginRegistry.Registrar): Method
 
         val adChannel = MethodChannel(registrar.messenger(), "admob_flutter/interstitial_$id")
         allAds[id]!!.adListener = createAdListener(adChannel, fun():String? = allAds[id]!!.mediationAdapterClassName)
+        result.success(null)
       }
       "load" -> {
         val id = call.argument<Int>("id")
@@ -36,24 +37,31 @@ class AdmobInterstitial(private val registrar: PluginRegistry.Registrar): Method
         val id = call.argument<Int>("id")
 
         if (allAds[id] == null) {
-          return result.success(false)
+          result.success(false)
+          return
         }
 
         if (allAds[id]!!.isLoaded) {
           result.success(true)
-        } else result.success(false)
+        } else {
+          result.success(false)
+        }
       }
       "show" -> {
         val id = call.argument<Int>("id")
 
         if (allAds[id]!!.isLoaded) {
           allAds[id]!!.show()
-        } else result.error(null, null, null)
+          result.success(null)
+        } else {
+          result.error(null, null, null)
+        }
       }
       "dispose" -> {
         val id = call.argument<Int>("id")
 
         allAds.remove(id)
+        result.success(null)
       }
       else -> result.notImplemented()
     }

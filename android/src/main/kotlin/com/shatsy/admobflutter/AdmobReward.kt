@@ -46,6 +46,7 @@ class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChanne
           override fun onRewardedVideoStarted() = adChannel.invokeMethod("started", null)
           override fun onRewardedVideoAdFailedToLoad(errorCode: Int) = adChannel.invokeMethod("failedToLoad", hashMapOf("errorCode" to errorCode))
         }
+        result.success(null)
       }
       "load" -> {
         val id = call.argument<Int>("id")
@@ -66,25 +67,32 @@ class AdmobReward(private val registrar: PluginRegistry.Registrar): MethodChanne
         val id = call.argument<Int>("id")
 
         if (allAds[id] == null) {
-          return result.success(false)
+          result.success(false)
+          return
         }
 
         if (allAds[id]!!.isLoaded) {
           result.success(true)
-        } else result.success(false)
+        } else {
+          result.success(false)
+        }
       }
       "show" -> {
         val id = call.argument<Int>("id")
 
         if (allAds[id]!!.isLoaded) {
           allAds[id]!!.show()
-        } else result.error(null, null, null)
+          result.success(null)
+        } else {
+          result.error(null, null, null)
+        }
       }
       "dispose" -> {
         val id = call.argument<Int>("id")
 
         allAds[id]!!.destroy(registrar.context())
         allAds.remove(id)
+        result.success(null)
       }
       else -> result.notImplemented()
     }
